@@ -11,7 +11,7 @@
   <link rel="icon" href={{asset("../../favicon.ico")}} />
 
   <title>Bali Pasadena</title>
-  
+
   <!-- Bootstrap core JavaScript
     ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
@@ -25,7 +25,7 @@
   <script src={{asset("external/holder.min.js")}}></script>
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
   <script src={{asset("external/ie10-viewport-bug-workaround.js")}}></script>
-  
+
   <!-- Css font -->
   <link rel="stylesheet" href={{asset("style.css")}}>
 
@@ -73,9 +73,9 @@
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <li><a href={{url('/index')}}>Beranda</a></li>
-              <li><a href={{url('/product')}}>Produk Kami</a></li>
-              <li><a href={{url('/contact')}}>Tentang Kami</a></li>
+              <li><a href={{url('/')}}>Beranda</a></li>
+              <li><a href="{{url('/product')}}">Produk Kami</a></li>
+              <li><a href="{{url('/contact')}}">Tentang Kami</a></li>
             </ul>
           </div>
         </div>
@@ -93,6 +93,6 @@
     </p>
   </footer>
 </div>
-<!-- /.container -->    
+<!-- /.container -->
 </body>
 </html>

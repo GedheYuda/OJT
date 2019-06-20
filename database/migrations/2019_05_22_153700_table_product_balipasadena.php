@@ -17,6 +17,7 @@ class TableProductBalipasadena extends Migration
             $table->bigIncrements('id');
             $table->string('type');
             $table->string('name');
+            $table->string('file');
             $table->string('price');
             $table->timestamps();
         });
