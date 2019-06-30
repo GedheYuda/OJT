@@ -3,35 +3,31 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Login;
+use App\User;
 
 class RegisterController extends Controller
 {
-    public function reigsterForm()
+    public function registerForm()
     {
-        return view('register.form');
+        return view('balipasadena.register');
     }
     public function register(Request $request){
-        $request->validate([
-            'name'      => 'required|string',
-            'email'     => 'required|string|unique:users|max:255',
-            'password'  => 'required|string|min:8|unique',
-            'age'       => 'required|integer|max:3',
-            'jobs'      => 'required|string',
-            'address'   => 'required|string',
-            'gender'    => 'required|string',
-        ]);
-        $user = new User([
-            'name'              =>$request->get('name'),
-            'age'               =>$request->get('age'),
-            'jobs'              =>$request->get('jobs'),
-            'address'           =>$request->get('address'),
-            'email'             =>$request->get('email'),
-            'password'          =>bcrypt($request->get('password')),
-            'gender'            =>$request->get('jobs'),
-        ]);
-        $user->save();
-        return redirect('user/index')->with('success','User has been added in database');
+        $pass = $request->get('password');
+        $pass2 = $request->get('password2');
+        if($pass != $pass2){
+            return redirect('/register')->with('message','Password harus sama');
+        }
+        else{
+            $user = new User([
+                'name'              =>$request->get('name'),
+                'age'               =>$request->get('age'),
+                'address'           =>$request->get('address'),
+                'email'             =>$request->get('email'),
+                'password'          =>bcrypt($request->get('password')),
+            ]);
+            $user->save();
+            return redirect('/login');
+        }
     }
     public function __construct()
     {

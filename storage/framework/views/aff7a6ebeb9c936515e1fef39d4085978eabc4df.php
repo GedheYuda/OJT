@@ -7,6 +7,8 @@
     <script src="<?php echo e(asset('js/jquery-3.3.1.min.js')); ?>"></script>
     <script src="<?php echo e(asset('js/select2.min.js')); ?>"></script>
     <script src="<?php echo e(asset('js/global.js')); ?>"></script>
+    <script src="<?php echo e(asset('js/bootstrap.min.js')); ?>"></script>
+    <link href= <?php echo e(asset("css/bootstrap.min.css")); ?> rel="stylesheet" />
     <link href="<?php echo e(asset('css/material-design-iconic-font.min.css')); ?>" rel="stylesheet" media="all">
     <link href="<?php echo e(asset('css/all.css')); ?>" rel="stylesheet" media="all">
     <link href="<?php echo e(asset('css/select2.min.css')); ?>" rel="stylesheet" media="all">

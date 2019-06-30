@@ -37,15 +37,13 @@ Tambah Data Barang
             <input class="input--style-4" type="text" name="type" id="type">
         </div>
     </div>
-	<div class="row row-space">
-		<div class="col-2">
-			<div class="input-group">
-				<label class="label" for="pic">Gambar Barang</label>
-				<input class="input--style-4" type="file" name="pic" id="pic">
-			</div>
-		</div>
-	</div>
-	<div class="col-4">
+    <div class="col-2">
+        <div class="input-group">
+            <label class="label" for="pic">Gambar Barang</label>
+            <input class="input--style-4" type="file" name="pic" id="pic">
+        </div>
+    </div>
+    <div class="col-4">
  	<button class="btn btn--radius-2 btn--blue" type="submit">Submit</button>
  </div>
 </div>

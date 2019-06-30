@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Session;
 
 class ProductController extends Controller
 {
@@ -32,6 +33,14 @@ class ProductController extends Controller
     }
     // Untuk Menyimpan gambar dan keterangan tentang produk
     // Untuk admin
+    public function dashboard(){
+        if(!Session::get('name')){
+            return redirect('/login');
+        }else{
+            $product = Product::all();
+            return view('balipasadena.dashboard', compact('product'));
+        }
+    }
     public function store(Request $request)
     {
         if($request->hasFile('pic')){
@@ -58,7 +67,7 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = Product::find($id);
-        return view('balipasadena.show',compact('product, id'));
+        return view('balipasadena.view', compact('product','id'));
     }
     // Untuk menampilkan data yang akan diedit
     // Untuk admin
@@ -92,7 +101,7 @@ class ProductController extends Controller
     }
     // Menghapus data yang tidak diperlukan
     // Untuk admin
-    public function destroy($id)
+    public function delete($id)
     {
         $product = Product::find($id);
         $product->delete();

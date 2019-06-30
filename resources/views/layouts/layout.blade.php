@@ -7,6 +7,8 @@
     <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
     <script src="{{asset('js/select2.min.js')}}"></script>
     <script src="{{asset('js/global.js')}}"></script>
+    <script src="{{asset('js/bootstrap.min.js')}}"></script>
+    <link href= {{asset("css/bootstrap.min.css")}} rel="stylesheet" />
     <link href="{{asset('css/material-design-iconic-font.min.css')}}" rel="stylesheet" media="all">
     <link href="{{asset('css/all.css')}}" rel="stylesheet" media="all">
     <link href="{{asset('css/select2.min.css')}}" rel="stylesheet" media="all">

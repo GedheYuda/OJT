@@ -2,82 +2,38 @@
 
 namespace App\Http\Controllers;
 
-use App\Login;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
-class AuthControlelr extends Controller
+class LoginController extends Controller
 {
     public function loginForm(){
-        return view('login.form');
+        return view('balipasadena.login');
     }
     public function login(Request $request){
-        $request->validate([
-            'email'     => 'required|string|unique:users',
-            'password'  => 'required|string|min:8|confirmed',
-        ]);
         $email = $request->get('email');
         $password = $request->get('password');
-        if(strlen($email) == 0){
-            if(strlen($password) == 0){
-                return redirect('login')->with('message','Email or Password not be empty');
-            }
-        }else{
-            if(Login::where('email',$email)){
-                if(Login::where('password',$password)){
-                    $user = Login::all();
-                    Auth::login($user, true);
-                    return redirect('index')->with('success','You have been login');
-                }
+        $data = User::where('email', $email)->first();
+        if ($data){
+            if(Hash::check($password, $data->password)){
+                Session::put('name', $data->name);
+                return redirect('/dashboard')->with('success','Anda telah berhasil login');
             }
             else{
-                return redirect('login')->with('message','Password and Email should be match');
+                return redirect('/login');
             }
-        }
-    }
-    public function login3(Request $request){
-        $request->validate([
-            'email'     => 'required|string|unique:users',
-            'password'  => 'required|string|min:8|confirmed',
-        ]);
-        $email = $request->get('email');
-        $password = $request->get('password');
-        if(strlen($email) == 0){
-            if(strlen($password) == 0){
-                return redirect('login')->with('message','Email or Password not be empty');
-            }
-        }
-        $cred = request([$email,$password]);
-        $user = Login::where('email',$email)->orWhere('password',$password);
-        Auth::login($user, true);
-        return redirect('index')->with('success','You have been login');
-    }
-    public function loginv2(Request $request){
-        $request->validate([
-            'email'     => 'required|string|unique:users',
-            'password'  => 'required|string|min:8|confirmed',
-        ]);
-        $email = $request->get('email');
-        $password = $request->get('password');
-        if(strlen($email) == 0){
-            if(strlen($password) == 0){
-                return redirect('login')->with('message','Email or Password not be empty');
-            }
-        }
-        $cred = request([$email,$password]);
-        if(!Auth::attempt($cred)){
-            return redirect('login')->with('message','Password and Email should be match');
         }
         else{
-            Auth::attempt($cred);
-            return redirect('index')->with('success','You have been login');
+            return redirect('/login');
         }
     }
     protected function attempt(){
-        return Auth::logout();
+        Session::flush();
     }
     public function logout(Request $request){
-        return $this->attempt() ?: redirect('index')
-        ->with('success','You have been logout');
+        return $this->attempt() ?: redirect('/');
     }
     public function __construct()
     {
