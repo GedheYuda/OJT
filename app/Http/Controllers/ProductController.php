@@ -6,6 +6,7 @@ use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -24,8 +25,23 @@ class ProductController extends Controller
     }
     public function produk()
     {
-        $product = Product::all();
+        $product = DB::table('product')->orderBy('type','ASC')->get();
         return view('balipasadena.produk', compact('product'));
+    }
+    public function product_outdoor()
+    {
+        $product = Product::all()->where('type','outdoor');
+        return view('balipasadena.jenis.outdoor', compact('product'));
+    }
+    public function product_indoor()
+    {
+        $product = Product::all()->where('type','indoor');
+        return view('balipasadena.jenis.indoor', compact('product'));
+    }
+    public function product_accesories()
+    {
+        $product = Product::all()->where('type','accesories');
+        return view('balipasadena.jenis.aksesoris', compact('product'));
     }
     public function create()
     {
@@ -54,11 +70,11 @@ class ProductController extends Controller
             $product->price = $request->get('price');
             $product->file = $name;
             $product->save();
-            return redirect('/product');
+            return redirect('/dashboard')->with('success','Data anda berhasil dimasukkan kedalam database');
         }
         else
         {
-            return redirect('product')->with('message','Sorry the file you are looking for is missing');
+            return redirect('/dashboard')->with('message','Data yang anda isi gagal dimasukkan kedalam database');
         }
 
     }
@@ -76,9 +92,13 @@ class ProductController extends Controller
         $product = Product::find($id);
         return view('balipasadena.edit', compact('product'));
     }
+    public function indoor(){
+        $indoor = Product::all()-where('type','indoor')->get();
+        return view('balipasedana.indoor', compact('indoor'));
+    }
     // Untuk memperbaharui data
     // Untuk admin
-    public function update($id,Request $request)
+    public function update($id, Request $request)
     {
         if($request->hasFile('pic')){
             $file = $request->file('pic');
@@ -91,11 +111,11 @@ class ProductController extends Controller
             $product->price = $request->get('price');
             $product->file = $name;
             $product->save();
-            return redirect('/product');
+            return redirect('/dashboard')->with('success','Data anda telah berhasil dirubah');
         }
         else
         {
-            return redirect('product')->with('message','Sorry the file you are looking for is missing');
+            return redirect('/dashboard')->with('message','Maaf untuk mengupdate anda harus mengisi semua kolom');
         }
 
     }
@@ -105,6 +125,6 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $product->delete();
-        return redirect('index')->with('success','Product has been deleted');
+        return redirect('/dashboard')->with('success','Produk telah dihapus');
     }
 }

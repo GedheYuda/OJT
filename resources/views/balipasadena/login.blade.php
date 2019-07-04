@@ -21,10 +21,5 @@ Sign in
         <label class="custom-control-label" for="customCheck1">Remember password</label>
     </div>
     <button class="btn btn-lg btn-primary btn-block btn-uppercase" type="submit">Sign in</button>
-    <hr class="my-4">
-    <p style="text-align:center;">Sudah belum punya akun</p>
-    <hr class="my-4">
-    <a href="{{url('/register')}}" class="btn btn-lg btn-secondary btn-block btn-uppercase">Register</a>
-    <hr class="my-4">
 </form>
 @endsection

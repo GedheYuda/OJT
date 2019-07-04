@@ -1,6 +1,8 @@
 @extends('layouts.dashboard')
 @section('jd')
-    Data Balipasedana
+<div class="text-center">
+<h3>Data Balipasadena</h3>
+</div>
 @endsection
 @section('konten')
 <br>
@@ -18,8 +20,18 @@
 <div class="upper">
     @if (session()->get('success'))
     <div class="alert alert-success">
-        {{session()->get('success')}}
+        <div class="text-center">
+            {{session()->get('success')}}
+        </div>
     </div>
+    @else
+        @if (session()->get('message'))
+        <div class="alert alert-danger">
+            <div class="text-center">
+                {{session()->get('message')}}
+            </div>
+        </div>
+        @endif
     @endif
 </div>
 <table class="table table-striped table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -49,11 +61,9 @@
             <td>{{$prd->type}}</td>
             <td>{{$prd->file}}</td>
             <td style="text-align:center;">
-                <span><a href="{{url('/show'.$prd->id)}}" class="btn btn-primary" target="_blank">Lihat data</a></span>
-                <!--
-                    <span><a href="{{url('/edit'.$prd->id)}}" class="btn btn-warning" target="_blank">Edit data</a></span>
-                    <span><a href="{{url('/delete'.$prd->id)}}" class="btn btn-danger" >Hapus data</a></span>
-                -->
+                <span><a href="{{url('/show'.$prd->id)}}" class="btn btn-secondary" target="_blank">Lihat data</a></span>
+                <span><a href="{{url('/edit'.$prd->id)}}" class="btn btn-warning" target="_blank">Edit data</a></span>
+                <span><a href="{{url('/delete'.$prd->id)}}" class="btn btn-danger">Hapus data</a></span>
             </td>
         </tr>
         @endforeach

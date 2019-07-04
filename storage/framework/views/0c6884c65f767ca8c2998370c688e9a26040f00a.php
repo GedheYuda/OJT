@@ -33,7 +33,11 @@ Tambah Data Barang
     <div class="col-2">
         <div class="input-group">
             <label class="label" for="type">Tipe Barang</label>
-            <input class="input--style-4" type="text" name="type" id="type">
+            <select name="type" id="type" class="input--style-4">
+                <option value="indoor">Indoor</option>
+                <option value="outdoor">Outdoor</option>
+                <option value="accesories">Accesories</option>
+            </select>
         </div>
     </div>
     <div class="col-2">
@@ -48,5 +52,6 @@ Tambah Data Barang
 </div>
 </form>
 <?php $__env->stopSection(); ?>
+
 
 <?php echo $__env->make('layouts.layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\OJT\resources\views/balipasadena/create.blade.php ENDPATH**/ ?>

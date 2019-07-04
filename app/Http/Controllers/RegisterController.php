@@ -15,7 +15,7 @@ class RegisterController extends Controller
         $pass = $request->get('password');
         $pass2 = $request->get('password2');
         if($pass != $pass2){
-            return redirect('/register')->with('message','Password harus sama');
+            return redirect('/register');
         }
         else{
             $user = new User([

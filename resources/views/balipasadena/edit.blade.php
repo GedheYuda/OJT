@@ -15,7 +15,7 @@ Edit Data Barang
 	</div>
 	@endif
 </div>
-<form method="POST" action="{{URL::route('product.update'.$product->id)}}" enctype="multipart/form-data">
+<form method="POST" action="{{url('/update'.$product->id)}}" enctype="multipart/form-data">
 	@csrf
 	<div class="row row-space">
 		<div class="col-2">
@@ -41,7 +41,7 @@ Edit Data Barang
 		<div class="col-2">
 			<div class="input-group">
 				<label class="label" for="pic">Gambar Barang</label>
-				<input class="input--style-4" type="file" name="pic" id="pic" value="{{$product->file}}">
+				<input class="input--style-4" type="file" name="pic" id="pic">
 			</div>
 		</div>
 	</div>

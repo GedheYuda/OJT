@@ -1,6 +1,6 @@
 @extends('layouts.layouts')
 @section('jd')
-Produk Kami
+Produk Aksesoris Kami
 @endsection
 @section('main')
 <div class="container-fluid">
