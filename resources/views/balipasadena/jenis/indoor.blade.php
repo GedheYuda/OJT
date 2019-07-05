@@ -27,30 +27,37 @@ Produk Indoor Kami
                 </li>
             </ul>
         </div>
-    <div class="col-md-10">
-        <!-- Outdor Patio-set -->
-        @foreach ($product->chunk(3) as $chunk)
+        <div class="col-md-6 text-center">
+            <!-- Outdor Patio-set -->
+            @foreach ($product->chunk(3) as $chunk)
             <div class="row">
                 @foreach ($chunk as $prd)
-                    <div class="col-md-4">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">{{$prd->name}}</h3>
-                            </div>
-                            <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <img src="{{url('storage/images/',$prd->file)}}"
-                                        alt="Generic placeholder image" class="featurette-image img-responsive center-block"
-                                        data-src="holder.js/500x500/auto">
-                                    </div>
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{{$prd->name}}</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <img src="{{url('storage/images/',$prd->file)}}"
+                                    alt="Generic placeholder image" class="featurette-image img-responsive center-block"
+                                    data-src="holder.js/800x800/auto">
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
                 @endforeach
             </div>
-        @endforeach
-    </div>
+            @endforeach
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
 <hr class='featurette-divider' />
 @endsection
