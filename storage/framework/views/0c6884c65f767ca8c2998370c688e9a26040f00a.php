@@ -3,19 +3,9 @@ Tambah Data Barang
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('konten'); ?>
-<div class="card-body">
-	<?php if($errors->any()): ?>
-	<div class="alert alert-danger">
-		<ul>
-			<?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-				<li><?php echo e($error); ?></li>
-			<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-		</ul>
-	</div>
-	<?php endif; ?>
-</div>
-<form method="POST" action="<?php echo e(URL::route('product.store')); ?>" enctype="multipart/form-data">
-	<?php echo csrf_field(); ?>
+<form method="POST" action="<?php echo e(url('/store')); ?>" enctype="multipart/form-data">
+    <?php echo csrf_field(); ?>
+    <?php echo method_field('POST'); ?>
 	<div class="row row-space">
 		<div class="col-2">
 			<div class="input-group">

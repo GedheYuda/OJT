@@ -35,7 +35,7 @@ Edit Data Barang
     <div class="col-2">
         <div class="input-group">
             <label class="label" for="type">Tipe Barang</label>
-            <select name="type" id="type" class="input--style-4" aria-valuenow="{{$product->type}}">
+            <select name="type" id="type" class="input--style-4">
                 <option value="indoor">Indoor</option>
                 <option value="outdoor">Outdoor</option>
                 <option value="accesories">Accesories</option>

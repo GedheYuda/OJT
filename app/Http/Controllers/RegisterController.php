@@ -15,7 +15,7 @@ class RegisterController extends Controller
         $pass = $request->get('password');
         $pass2 = $request->get('password2');
         if($pass != $pass2){
-            return redirect('/register');
+            return redirect('/dashboard/register')->with('message','Password dan Ulangi Password harus sama');
         }
         else{
             $user = new User([
@@ -26,11 +26,7 @@ class RegisterController extends Controller
                 'password'          =>bcrypt($request->get('password')),
             ]);
             $user->save();
-            return redirect('/login');
+            return redirect('/login')->with('success','Login untuk masuk ke dashboard');
         }
-    }
-    public function __construct()
-    {
-        $this->middleware('guest');
     }
 }

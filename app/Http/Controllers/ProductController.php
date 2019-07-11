@@ -59,24 +59,30 @@ class ProductController extends Controller
     }
     public function store(Request $request)
     {
-        if($request->hasFile('pic')){
+        if($request->hasFile('pic'))
+        {
             $file = $request->file('pic');
             $name = $file->getClientOriginalName();
-            Storage::disk('local')->putFileAs('images', $file, $name);
+            $product = Product::where('file',$name)->count();
+            if($product > 0)
+            {
+                return redirect('/dashboard')->with('message','Maaf file yang anda pilih sudah ada');
+            }
+            else {
+                Storage::disk('local')->putFileAs('images',$file,$name);
 
-            $product = new Product;
-            $product->name = $request->get('name');
-            $product->type = $request->get('type');
-            $product->price = $request->get('price');
-            $product->file = $name;
-            $product->save();
-            return redirect('/dashboard')->with('success','Data anda berhasil dimasukkan kedalam database');
+                $product = new Product;
+                $product->name = $request->get('name');
+                $product->type = $request->get('type');
+                $product->price = $request->get('price');
+                $product->file = $name;
+                $product->save();
+                return redirect('/dashboard')->with('success','Produk telah ditambahkan kedalam database');
+            }
         }
-        else
-        {
-            return redirect('/dashboard')->with('message','Data yang anda isi gagal dimasukkan kedalam database');
+        else{
+            return redirect('/dashboard')->with('message','Maaf semua colom harus diisi semua');
         }
-
     }
     // Untuk menampilkan data
     // Untuk admin
@@ -126,5 +132,18 @@ class ProductController extends Controller
         $product = Product::find($id);
         $product->delete();
         return redirect('/dashboard')->with('success','Produk telah dihapus');
+    }
+    public function destroy($id)
+    {
+        $product = Product::find($id);
+        if($product)
+        {
+            Storage::disk('local')->delete('public/storage/images',$product->file);
+            $product->delete();
+            return redirect('/dashboard')->with('success','Produk telah berhasil dihapus');
+        }
+        else {
+            return redirect('/dashboard')->with('message','Maaf Produk tidak berhasil dihapus');
+        }
     }
 }

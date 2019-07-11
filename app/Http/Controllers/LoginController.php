@@ -22,11 +22,11 @@ class LoginController extends Controller
                 return redirect('/dashboard')->with('success','Anda telah berhasil login');
             }
             else{
-                return redirect('/login');
+                return redirect('/login')->with('message','Email dan Password harus terdaftar di database');
             }
         }
         else{
-            return redirect('/login');
+            return redirect('/login')->with('message','Email dan Password harus terdaftar di database');
         }
     }
     protected function attempt(){
@@ -34,9 +34,5 @@ class LoginController extends Controller
     }
     public function logout(Request $request){
         return $this->attempt() ?: redirect('/');
-    }
-    public function __construct()
-    {
-        $this->middleware('guest')->except('logout');
     }
 }

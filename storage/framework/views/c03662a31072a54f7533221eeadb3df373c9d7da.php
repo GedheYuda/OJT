@@ -131,8 +131,8 @@
     <!-- /.carousel -->
 </div>
 <?php echo $__env->yieldContent('main'); ?>
+</div>
 <hr class="featurette-divider" />
-
 <!-- /END THE FEATURETTES -->
 
 <!-- FOOTER -->
@@ -143,7 +143,6 @@
         <a href="#">Terms</a>
     </p>
 </footer>
-</div>
   <!-- /.container -->
   <!-- Bootstrap core JavaScript
     ================================================== -->

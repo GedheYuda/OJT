@@ -10,7 +10,9 @@
 <div class="container marketing">
     <!-- Three columns of text below the carousel -->
     <div class="col-lg-12">
-        <h1>About Us</h1>
+        <div class="text-center">
+            <h1>About Us</h1>
+        </div>
     </div>
     <!-- /.row -->
     <!-- START THE FEATURETTES -->

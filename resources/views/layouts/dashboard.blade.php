@@ -25,10 +25,10 @@
                     <a href="{{url('/dashboard')}}" class="nav-link">Dashboard <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{url('/create')}}" class="nav-link">Tambah Barang <span class="sr-only">(current)</span></a>
+                    <a href="{{url('/dashboard/create')}}" class="nav-link">Tambah Barang <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{url('/register')}}" class="nav-link">Tambah Admin <span class="sr-only">(current)</span></a>
+                    <a href="{{url('/dashboard/register')}}" class="nav-link">Tambah Admin <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a href="{{url('/logout')}}" class="nav-link">Logout <span class="sr-only">(current)</span></a>

@@ -4,19 +4,9 @@ Tambah Data Barang
 @endsection
 
 @section('konten')
-<div class="card-body">
-	@if($errors->any())
-	<div class="alert alert-danger">
-		<ul>
-			@foreach($errors->all() as $error)
-				<li>{{ $error}}</li>
-			@endforeach
-		</ul>
-	</div>
-	@endif
-</div>
-<form method="POST" action="{{URL::route('product.store')}}" enctype="multipart/form-data">
-	@csrf
+<form method="POST" action="{{url('/store')}}" enctype="multipart/form-data">
+    @csrf
+    @method('POST')
 	<div class="row row-space">
 		<div class="col-2">
 			<div class="input-group">
