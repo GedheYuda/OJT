@@ -59,18 +59,24 @@ class ProductController extends Controller
     }
     public function store(Request $request)
     {
+
         if($request->hasFile('pic'))
         {
-            $file = $request->file('pic');
+            $val = $request->validate([
+                'pic' => 'required|file|image|mimes:jpeg,png,jfif,webp|max:2048'
+            ]);
+            if(!$val){
+                return redirect('/dashboard/create')->with('message','Maaf format file yang anda masukkan salah');
+            }
+            $file = $val['pic'];
             $name = $file->getClientOriginalName();
             $product = Product::where('file',$name)->count();
             if($product > 0)
             {
-                return redirect('/dashboard')->with('message','Maaf file yang anda pilih sudah ada');
+                return redirect('/dashboard/create')->with('message','Maaf file yang anda pilih sudah ada');
             }
             else {
                 Storage::disk('local')->putFileAs('images',$file,$name);
-
                 $product = new Product;
                 $product->name = $request->get('name');
                 $product->type = $request->get('type');
@@ -98,16 +104,18 @@ class ProductController extends Controller
         $product = Product::find($id);
         return view('balipasadena.edit', compact('product'));
     }
-    public function indoor(){
-        $indoor = Product::all()-where('type','indoor')->get();
-        return view('balipasedana.indoor', compact('indoor'));
-    }
     // Untuk memperbaharui data
     // Untuk admin
     public function update($id, Request $request)
     {
         if($request->hasFile('pic')){
-            $file = $request->file('pic');
+            $val = $request->validate([
+                'pic' => 'required|file|image|mimes:jpeg,png,jfif,webp|max:2048'
+            ]);
+            if(!$val){
+                return redirect('/dashboard/create')->with('message','Maaf format file yang anda masukkan salah');
+            }
+            $file = $val['pic'];
             $name = $file->getClientOriginalName();
             Storage::disk('local')->putFileAs('images', $file, $name);
 
@@ -123,22 +131,15 @@ class ProductController extends Controller
         {
             return redirect('/dashboard')->with('message','Maaf untuk mengupdate anda harus mengisi semua kolom');
         }
-
     }
-    // Menghapus data yang tidak diperlukan
+    // Menghapus data yang tidak diperlukan dan foto
     // Untuk admin
-    public function delete($id)
-    {
-        $product = Product::find($id);
-        $product->delete();
-        return redirect('/dashboard')->with('success','Produk telah dihapus');
-    }
     public function destroy($id)
     {
         $product = Product::find($id);
         if($product)
         {
-            Storage::disk('local')->delete('public/storage/images',$product->file);
+            Storage::disk('public')->delete($product->file);
             $product->delete();
             return redirect('/dashboard')->with('success','Produk telah berhasil dihapus');
         }
