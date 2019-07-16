@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('jd')
-Sing In
+Sign in
 @endsection
 
 @section('konten')

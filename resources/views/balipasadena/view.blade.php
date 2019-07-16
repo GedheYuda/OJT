@@ -6,7 +6,7 @@ Lihat data barang
 @section('konten')
 <div class="form-sign">
     <div class="text-center">
-        <img src="{{url('storage/images/',$product->file)}}" alt="img" class="card-img-top">
+        <img src="{{url('storage/images/',$product->file)}}" alt="img" class="card-img-top" style="width: 50%; height: 50%;">
     </div>
     <div class="card-body">
         <h4 class="card-title text-center">Melihat data {{$product->name}}</h4>

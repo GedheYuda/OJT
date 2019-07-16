@@ -16,6 +16,8 @@ Route::get('/contact', 'ProductController@contact')->name('contact');
 Route::get('/show{id}','ProductController@show')->name('show');
 Route::post('/store','ProductController@store')->name('store');
 Route::get('/edit{id}','ProductController@edit')->name('edit');
+Route::get('/edfot{id}','ProductController@edfot')->name('editfoto');
+Route::post('/upfot{id}','ProductController@update_image')->name('updateimage');
 Route::get('/delete{id}','ProductController@destroy')->name('destroy');
 Route::post('/update{id}','ProductController@update')->name('update');
 Route::get('/indoor','ProductController@product_indoor');

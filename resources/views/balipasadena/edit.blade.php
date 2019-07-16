@@ -4,22 +4,11 @@ Edit Data Barang
 @endsection
 
 @section('konten')
-<div class="card-body">
-	@if($errors->any())
-	<div class="alert alert-danger">
-		<ul>
-			@foreach($errors->all() as $error)
-				<li>{{ $error}}</li>
-			@endforeach
-		</ul>
-	</div>
-	@endif
-</div>
-<form method="POST" action="{{url('/update'.$product->id)}}" enctype="multipart/form-data">
+<form method="POST" action="{{url('/update'.$product->id)}}">
     @csrf
     @method("POST")
-	<div class="row row-space">
-		<div class="col-2">
+    <div class="row row-space">
+        <div class="col-2">
 			<div class="input-group">
 				<label class="label" for="name">Nama Barang</label>
                 <input class="input--style-4" type="text" name="name" id="name" value="{{$product->name}}">
@@ -42,15 +31,9 @@ Edit Data Barang
             </select>
         </div>
     </div>
-    <div class="col-2">
-        <div class="input-group">
-            <label class="label" for="pic">Gambar Barang</label>
-            <input class="input--style-4" type="file" name="pic" id="pic">
-        </div>
-    </div>
     <div class="col-4">
- 	<button class="btn btn--radius-2 btn--blue" type="submit">Submit</button>
- </div>
+        <button class="btn btn--radius-2 btn--blue" type="submit">Submit</button>
+    </div>
 </div>
 </form>
 @endsection
