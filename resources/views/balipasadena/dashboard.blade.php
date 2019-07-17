@@ -62,9 +62,9 @@
             <td>{{$prd->file}}</td>
             <td style="text-align:center;">
                 <!--<span><a href="{{url('/show'.$prd->id)}}" class="btn btn-secondary" target="_blank">Lihat barang</a></span>-->
-                <span><a href="{{url('/edit'.$prd->id)}}" class="btn btn-warning" target="_blank">Edit barang</a></span>
-                <span><a href="{{url('/delete'.$prd->id)}}" class="btn btn-danger">Hapus barang</a></span>
-                <span><a href="{{url('/edfot'.$prd->id)}}" class="btn btn-primary" target="_blank">Edit foto barang</a></span>
+                <span><a href="{{url('/edit'.$prd->id)}}" class="btn btn-warning" target="_self">Edit barang</a></span>
+                <span><a href="{{url('/delete'.$prd->id)}}" class="btn btn-danger" target="_self">Hapus barang</a></span>
+                <span><a href="{{url('/edfot'.$prd->id)}}" class="btn btn-primary" target="_self">Edit foto barang</a></span>
             </td>
         </tr>
         @endforeach

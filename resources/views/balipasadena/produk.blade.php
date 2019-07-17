@@ -42,7 +42,7 @@ Produk Kami
                                     <div class="col-md-11">
                                         <img src="{{url('storage/images/',$prd->file)}}"
                                         alt="Generic placeholder image" class="featurette-image img-responsive center-block"
-                                        data-src="holder.js/800x800/auto">
+                                        data-src="holder.js/800x800/auto" style="width: 70%; height: 70%;">
                                     </div>
                                 </div>
                             </div>

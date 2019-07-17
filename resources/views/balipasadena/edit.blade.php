@@ -25,9 +25,21 @@ Edit Data Barang
         <div class="input-group">
             <label class="label" for="type">Tipe Barang</label>
             <select name="type" id="type" class="input--style-4">
-                <option value="indoor">Indoor</option>
-                <option value="outdoor">Outdoor</option>
-                <option value="accesories">Accesories</option>
+                @if ($product->type == "indoor")
+                    <option value="indoor" selected>Indoor</option>
+                    <option value="outdoor">Outdoor</option>
+                    <option value="accesories">Accesories</option>
+                @else
+                    @if ($product->type == "outdoor")
+                        <option value="indoor">Indoor</option>
+                        <option value="outdoor" selected>Outdoor</option>
+                        <option value="accesories">Accesories</option>
+                    @else
+                        <option value="indoor">Indoor</option>
+                        <option value="outdoor">Outdoor</option>
+                        <option value="accesories" selected>Accesories</option>
+                    @endif
+                @endif
             </select>
         </div>
     </div>

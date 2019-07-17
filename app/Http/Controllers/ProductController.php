@@ -50,8 +50,6 @@ class ProductController extends Controller
     {
         return view('balipasadena.create');
     }
-    // Untuk Menyimpan gambar dan keterangan tentang produk
-    // Untuk admin
     public function dashboard(){
         if(!Session::get('name')){
             return redirect('/login');
@@ -72,23 +70,12 @@ class ProductController extends Controller
             ]);
             $file = $val['pic'];
             $name = $file->getClientOriginalName();
-            // Lebar dan tinggi dari gambar
-            $wdth = Image::make($file)->width();
-            $hght = Image::make($file)->height();
-            $w = $wdth * 0.7;
-            $h = $hght * 0.7;
             $product = Product::where('file',$name)->count();
             if($product > 0)
             {
                 return redirect('/dashboard/create')->with('message','Maaf file yang anda pilih sudah ada');
             }
             else {
-                if($file)
-                {
-                    Image::make($file)->resize($w,$h, function ($constraint){
-                        $constraint->aspectRatio();
-                    });
-                }
                 Storage::disk('local')->putFileAs('images',$file,$name);
                 $product = new Product;
                 $product->name = $request->get('name');
@@ -144,9 +131,6 @@ class ProductController extends Controller
             else {
                 if($file)
                 {
-                    Image::make($file)->resize(230, 230, function ($constraint){
-                        $constraint->aspectRatio();
-                    });
                     Storage::disk('local')->putFileAs('images',$file,$name);
                     $product = Product::find($id);
                     $product->file = $name;

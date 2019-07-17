@@ -22,7 +22,7 @@ class LoginController extends Controller
                 return redirect('/dashboard')->with('success','Anda telah berhasil login');
             }
             else{
-                return redirect('/login')->with('message','Email dan Password harus terdaftar di database');
+                return redirect('/login')->with('message','Password anda salah mohon ulagni ');
             }
         }
         else{

@@ -28,37 +28,35 @@ Produk Outdoor Kami
             </ul>
         </div>
         <div class="col-md-10 text-center">
-            <!-- Outdor Patio-set -->
-            @foreach ($product->chunk(4) as $chunk)
-                <div class="row">
-                    @foreach ($chunk as $prd)
-                        <div class="col-md-4">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">{{$prd->name}}</h3>
-                                </div>
-                                <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-md-11">
-                                            <img src="{{url('storage/images',$prd->file)}}"
-                                            alt="Generic placeholder image" class="featurette-image img-responsive center-block"
-                                            data-src="holder.js/800x800/auto">
-                                        </div>
-                                        <div class="col-md-1">
-                                        </div>
+        <!-- Outdor Patio-set -->
+        @foreach ($product->chunk(4) as $chunk)
+            <div class="row">
+                @foreach ($chunk as $prd)
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">{{$prd->name}}</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-11">
+                                        <img src="{{url('storage/images/',$prd->file)}}"
+                                        alt="Generic placeholder image" class="featurette-image img-responsive center-block"
+                                        data-src="holder.js/800x800/auto" style="width: 70%; height: 70%;">
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    @endforeach
-                </div>
-            @endforeach
-        </div>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+                    </div>
+                @endforeach
+            </div>
+        @endforeach
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 @endsection
