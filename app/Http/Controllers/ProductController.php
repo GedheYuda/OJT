@@ -6,8 +6,6 @@ use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\DB;
-use Intervention\Image\Facades\Image;
 
 class ProductController extends Controller
 {
@@ -28,7 +26,7 @@ class ProductController extends Controller
     }
     public function produk()
     {
-        $product = DB::table('product')->orderBy('type','ASC')->get();
+        $product = Product::all();
         return view('balipasadena.produk', compact('product'));
     }
     public function product_outdoor()
@@ -60,34 +58,23 @@ class ProductController extends Controller
     }
     public function store(Request $request)
     {
-
-        //
-        if($request->hasFile('pic'))
-        {
-            // Meminta dan mengecek gambar sesuai dengan jenis file,
-            $val = $request->validate([
-                'pic' => 'required|file|image|mimes:jpeg,png,jfif,webp|max:2048'
-            ]);
-            $file = $val['pic'];
+        if($request->hasFile('pic')){
+            $file = $request->file('pic');
             $name = $file->getClientOriginalName();
-            $product = Product::where('file',$name)->count();
-            if($product > 0)
-            {
-                return redirect('/dashboard/create')->with('message','Maaf file yang anda pilih sudah ada');
-            }
-            else {
-                Storage::disk('local')->putFileAs('images',$file,$name);
+            $prd = Product::where('file', $name)->count();
+            if($prd < 1){
+                Storage::disk('public_path')->putFileAs('images',$file,$name);
                 $product = new Product;
                 $product->name = $request->get('name');
                 $product->type = $request->get('type');
                 $product->price = $request->get('price');
                 $product->file = $name;
                 $product->save();
-                return redirect('/dashboard')->with('success','Produk telah ditambahkan kedalam database');
+                return redirect('/dashboard')->with('success','Gambar Produk telah ditambahkan kedalam database');
             }
-        }
-        else{
-            return redirect('/dashboard')->with('message','Maaf semua colom harus diisi semua');
+            else{
+                return redirect('/dashboard')->with('message','Maaf file yang anda pilih sudah ada');
+            }
         }
     }
     // Untuk menampilkan data
@@ -118,31 +105,19 @@ class ProductController extends Controller
     public function update_image($id, Request $request)
     {
         if($request->hasFile('pic')){
-            $val = $request->validate([
-                'pic' => 'required|file|image|mimes:jpeg,png,jfif,webp|max:2048'
-            ]);
-            $file = $val['pic'];
+            $file = $request->file('pic');
             $name = $file->getClientOriginalName();
             $prd = Product::where('file', $name)->count();
-            if($prd > 0)
-            {
-                return redirect('/dashboard/create')->with('message','Maaf file yang anda pilih sudah ada');
+            if($prd < 1){
+                Storage::disk('public_path')->putFileAs('images',$file,$name);
+                $product = Product::find($id);
+                $product->file = $name;
+                $product->save();
+                return redirect('/dashboard')->with('success','Gambar Produk telah ditambahkan kedalam database');
             }
-            else {
-                if($file)
-                {
-                    Storage::disk('local')->putFileAs('images',$file,$name);
-                    $product = Product::find($id);
-                    $product->file = $name;
-                    $product->save();
-                    return redirect('/dashboard')->with('success','Gambar Produk telah ditambahkan kedalam database');
-                }
-                else{
-                    return redirect('/dashboard/create')->with('message','File gambar gagal diupdate');
-                }
+            else{
+                return redirect('/dashboard')->with('message','Maaf file yang anda pilih sudah ada');
             }
-        }else{
-            return redirect('/dashboard/create')->with('message','File gambar harus diisi');
         }
     }
     // Menghapus data yang tidak diperlukan dan foto
@@ -157,7 +132,7 @@ class ProductController extends Controller
             // Menghapus gambar atau foto yang tersimpan di storage.
             // Berdasarkan 'driver' dari filesystem di folder 'config' yaitu 'public'.
             // yang disetting pada 'storage/app/public/images/
-            Storage::disk('public')->delete($product->file);
+            Storage::disk('public_upload')->delete($product->file);
             // Menghapus data di database
             $product->delete();
             // Setelah datanya berhasil dihapus maka langsung dialihkan ke 'dashboard'.

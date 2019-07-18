@@ -1,13 +1,10 @@
 <!doctype html>
-<html>
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>@yield('jd')</title>
-    <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
-    <script src="{{asset('js/select2.min.js')}}"></script>
-    <script src="{{asset('js/global.js')}}"></script>
-    <script src="{{asset('js/bootstrap.min.js')}}"></script>
+
     <link href= {{asset("css/bootstrap.min.css")}} rel="stylesheet" />
     <link href="{{asset('css/material-design-iconic-font.min.css')}}" rel="stylesheet" media="all">
     <link href="{{asset('css/all.css')}}" rel="stylesheet" media="all">
@@ -25,5 +22,19 @@
             </div>
         </div>
     </div>
+    <script>
+        function prev(){
+            var reader = new FileReader();
+            reader.readAsDataURL(document.getElementById("pic").files[0]);
+
+            reader.onload = function(event){
+                document.getElementById("images").src = event.target.result;
+            };
+        };
+    </script>
+    <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
+    <script src="{{asset('js/select2.min.js')}}"></script>
+    <script src="{{asset('js/global.js')}}"></script>
+    <script src="{{asset('js/bootstrap.min.js')}}"></script>
 </body>
 </html>

@@ -11,13 +11,13 @@ Edit Data Barang
         <div class="col-2">
 			<div class="input-group">
 				<label class="label" for="name">Nama Barang</label>
-                <input class="input--style-4" type="text" name="name" id="name" value="{{$product->name}}">
+                <input class="input--style-4" type="text" name="name" id="name" value="{{$product->name}}" required>
 			</div>
 		</div>
 		<div class="col-2">
 			<div class="input-group">
 				<label class="label" for="price">Harga Barang</label>
-				<input class="input--style-4" type="text" name="price" id="price"  value="{{$product->price}}">
+				<input class="input--style-4" type="text" name="price" id="price"  value="{{$product->price}}" required>
 			</div>
 		</div>
 	</div>

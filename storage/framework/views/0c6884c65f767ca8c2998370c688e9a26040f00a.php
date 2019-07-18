@@ -7,16 +7,25 @@ Tambah Data Barang
     <?php echo csrf_field(); ?>
     <?php echo method_field('POST'); ?>
 	<div class="row row-space">
+        <div class="col-4">
+            <div class="text-center">
+                <img src="" id="images" class="card-img-top" style="width: 50%; height: 50%;">
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
 		<div class="col-2">
 			<div class="input-group">
 				<label class="label" for="name">Nama Barang</label>
-				<input class="input--style-4" type="text" name="name" id="name">
+				<input class="input--style-4" type="text" name="name" id="name" required>
 			</div>
 		</div>
 		<div class="col-2">
 			<div class="input-group">
 				<label class="label" for="price">Harga Barang</label>
-				<input class="input--style-4" type="text" name="price" id="price">
+				<input class="input--style-4" type="text" name="price" id="price" required>
 			</div>
 		</div>
 	</div>
@@ -33,7 +42,7 @@ Tambah Data Barang
     <div class="col-2">
         <div class="input-group">
             <label class="label" for="pic">Gambar Barang</label>
-            <input class="input--style-4" type="file" name="pic" id="pic">
+            <input class="input--style-4" type="file" name="pic" id="pic" onchange="prev()" accept="image/*" required>
         </div>
     </div>
     <div class="col-4">
