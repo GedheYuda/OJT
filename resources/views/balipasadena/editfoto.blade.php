@@ -8,7 +8,7 @@ Edit Foto Data Barang
     @csrf
     @method('POST')
     <div class="text-center">
-        <img src="{{url('storage/images/'.$product->file)}}" id="images" alt="img" class="card-img-top" style="width: 50%; height: 50%;">
+        <img src="{{url('images/'.$product->file)}}" id="images" alt="img" class="card-img-top" style="width: 50%; height: 50%;">
         <p>Nama gambar {{$product->file}}</p>
         <div class="row row-space">
             <div class="col-2">

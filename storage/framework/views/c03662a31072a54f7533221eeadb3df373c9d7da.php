@@ -8,7 +8,7 @@
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
   <meta name="description" content="jual kerajinan rotan, meja rotan, kerajinan" />
   <meta name="author" content="" />
-  <link rel="icon" href=<?php echo e(asset("../../favicon.ico")); ?> />
+  <link rel="icon" href=<?php echo e(asset("img/logo/logo.png")); ?> />
 
   <title><?php echo $__env->yieldContent('jd'); ?></title>
   <!-- Css font -->
@@ -47,7 +47,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-          <img class="navbar-brand img-circle" src=<?php echo e(asset("Img/logo/logo.png")); ?> style="width:55;height:55;">
+          <img class="navbar-brand img-circle" src=<?php echo e(asset("img/logo/logo.png")); ?> style="width:55;height:55;">
             <a class="navbar-brand">
               Bali Pasadena
             </a>

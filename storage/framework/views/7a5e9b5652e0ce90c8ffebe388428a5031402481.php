@@ -20,7 +20,7 @@
       </div>
       <!-- /.col-lg-4 -->
       <div class="col-lg-4">
-        <img class="img-circle" src="<?php echo e(asset('Img/aksesoris/spiral.jpg')); ?>" alt="Generic placeholder image" width="140"
+        <img class="img-circle" src="<?php echo e(asset('img/aksesoris/spiral.jpg')); ?>" alt="Generic placeholder image" width="140"
           height="140" />
         <h2>Aksesoris</h2>
         <p>

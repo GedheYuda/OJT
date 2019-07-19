@@ -40,7 +40,7 @@ Produk Kami
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-md-11">
-                                        <img src="{{url('storage/images',$prd->file)}}"
+                                        <img src="{{url('images',$prd->file)}}"
                                         alt="Generic placeholder image" class="featurette-image img-responsive center-block"
                                         data-src="holder.js/800x800/auto" style="width: 80%; height: 80%;">
                                     </div>

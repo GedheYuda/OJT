@@ -21,7 +21,7 @@
       </div>
       <!-- /.col-lg-4 -->
       <div class="col-lg-4">
-        <img class="img-circle" src="{{asset('Img/aksesoris/spiral.jpg')}}" alt="Generic placeholder image" width="140"
+        <img class="img-circle" src="{{asset('img/aksesoris/spiral.jpg')}}" alt="Generic placeholder image" width="140"
           height="140" />
         <h2>Aksesoris</h2>
         <p>
